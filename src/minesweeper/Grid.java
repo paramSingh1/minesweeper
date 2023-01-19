@@ -11,19 +11,19 @@ public class Grid {
 
 
 	public static void printBoard() {
-//		for(int i=0; i<rows.length;i++) {
-//			System.out.printf("%s  | %d \n",Arrays.toString(rows[i]), i+1);
-//		}
+		//Generate a board to the user.
 		for(int i =0; i<grid.length;i++) {
-
+			
 			for(int j = 0; j<grid[i].length;j++) {
+				//Check if the selected grid is not a bomb or revealed
 				if(revealedGrid[i][j] && grid[i][j] != -1) {
 					System.out.printf(" %s ",grid[i][j]);
-					
+					//If it hasnt been revealed yet, show it as [x]
 				}else if(!revealedGrid[i][j]) {
 					if(grid[i][j]== -1 ||grid[i][j]== 0 ) {
 						System.out.printf("[x]",grid[i][j]);
 					}else if(grid[i][j]>0) {
+						//>0 is used as these numbers will denote the surrounding bombs
 						System.out.printf(" %s ",grid[i][j]);
 					}
 					
@@ -31,9 +31,12 @@ public class Grid {
 				
 //				System.out.printf(" %s ",revealedGrid[i][j]);
 			}
+			//Print some y axis grid co-ords for ux
 			System.out.printf("| %d \n \n",i+1);
 		}
 		System.out.println();
+		//Print some x axis grid co-ords for ux
+
 		for(int i=0; i<grid.length;i++) {
 			System.out.printf(" - ");
 		}
@@ -45,6 +48,7 @@ public class Grid {
 	}
 	
 	public static void placeMines() {
+		//Generate 2 random nums, 
 		int mines = 0;
 		while(mines <10) {
 			Random randomNum = new Random();
@@ -62,6 +66,7 @@ public class Grid {
 			mines++;
 		}
 	}
+	//Generate the required boards, place mines and print it.
 	public static void board(){
 		grid = new int [10][10];
 		revealedGrid = new boolean[10][10];
